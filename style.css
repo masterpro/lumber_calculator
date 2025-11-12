@@ -1,0 +1,141 @@
+        body {
+            background-color: transparent;
+            font-family: Arial, sans-serif;
+            padding: 15px; /* Уменьшено для мобильных */
+        }
+        
+        .calculator {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 18px; /* Уменьшено на 10% от 20px */
+            max-width: 300px; /* 🔥 Уменьшено на 40%: 500px → 300px */
+            margin: 0 auto; /* Центрирует на всех экранах */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin: 6px 0 12px; /* Уменьшены отступы для компактности */
+            font-weight: normal;
+        }
+        
+        .input-group {
+            margin-bottom: 12px; /* Уменьшено с 15px */
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        label span.unit {
+            color: red;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 8px; /* Уменьшено с 10px */
+            margin-top: 18px; /* Уменьшено с 20px */
+        }
+        
+        button {
+            flex: 1;
+            padding: 9px; /* Уменьшено с 10px */
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 15px; /* Уменьшено с 16px */
+            background: linear-gradient(to bottom, #e0e0e0, #d0d0d0);
+            color: #333;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: linear-gradient(to bottom, #d0d0d0, #c0c0c0);
+        }
+        
+        .result {
+            margin-top: 18px;
+        }
+        
+        .result-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+        
+.result-value {
+    width: 100%;
+    padding: 9px 8px; /* 👈 Это ВАЖНО — именно так */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+    color: #333;
+    box-sizing: border-box; /* 🔥 ДОБАВЛЯЕМ — на всякий случай */
+}
+        
+        /* 👇 Адаптация для экранов до 480px — мобильные устройства */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .calculator {
+                padding: 16px;
+                max-width: 100%;
+                margin: 0 10px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+                margin: 5px 0 10px;
+            }
+            
+            .input-group {
+                margin-bottom: 10px;
+            }
+            
+            .buttons {
+                gap: 6px;
+                margin-top: 15px;
+            }
+            
+            button {
+                padding: 8px;
+                font-size: 14px;
+            }
+            
+            .result-value {
+                padding: 8px;
+                min-height: 45px;
+            }
+            
+            /* Сделать три поля ввода размеров — вертикально на маленьких экранах */
+            .input-group:nth-child(2) > div {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .input-group:nth-child(2) > div > div {
+                flex: none;
+                width: 100%;
+            }
+        }

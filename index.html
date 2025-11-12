@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор расчёта пиломатериалов</title>
+    <meta name="description" content="Калькулятор расчёта пиломатериалов">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/3xhpqpH1/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#4F46E5">
+
+</head>
+<body>
+    <div class="calculator">
+        <h1>Калькулятор расчёта пиломатериалов</h1>
+        
+        <div class="input-group">
+            <label for="thickness">Укажите размеры одной доски (бруса), <span class="unit">mm</span>:</label>
+            <div style="display: flex; gap: 8px;">
+                <div style="flex: 1;">
+                    <label for="thickness">Толщина:</label>
+                    <input type="text" id="thickness" value="25">
+                </div>
+                <div style="flex: 1;">
+                    <label for="width">Ширина:</label>
+                    <input type="text" id="width" value="100">
+                </div>
+                <div style="flex: 1;">
+                    <label for="length">Длина:</label>
+                    <input type="text" id="length" value="6000">
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label for="quantity">Введите общее количество доски (бруса), <span class="unit">m³</span>:</label>
+            <input type="text" id="quantity" value="3,0">
+        </div>
+        
+        <div class="input-group">
+            <label for="price">Укажите цену m³ доски (бруса), <span class="unit">€</span></label>
+            <input type="text" id="price" value="220">
+        </div>
+        
+        <div class="buttons">
+            <button onclick="calculate()">Расчёт</button>
+            <button onclick="clearForm()">Очистить</button>
+        </div>
+        
+        <div class="result">
+            <div class="result-label">Результат расчёта:</div>
+            <div class="result-value" id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const thickness = parseFloat(document.getElementById('thickness').value.replace(',', '.')) / 1000;
+            const width = parseFloat(document.getElementById('width').value.replace(',', '.')) / 1000;
+            const length = parseFloat(document.getElementById('length').value.replace(',', '.')) / 1000;
+            const quantity = parseFloat(document.getElementById('quantity').value.replace(',', '.'));
+            const price = parseFloat(document.getElementById('price').value.replace(',', '.'));
+
+            if (isNaN(thickness) || isNaN(width) || isNaN(length) || isNaN(quantity) || isNaN(price)) {
+                document.getElementById('result').textContent = 'Ошибка: Введите корректные числовые значения';
+                return;
+            }
+
+            const volumePerBoard = thickness * width * length;
+            const numberOfBoards = Math.round(quantity / volumePerBoard);
+            const totalCost = quantity * price;
+
+            document.getElementById('result').textContent = 
+                `Объем одной доски: ${volumePerBoard.toFixed(6)} м³
+Количество досок: ${numberOfBoards} шт.
+Общая стоимость: ${totalCost.toFixed(2)} €`;
+        }
+        
+        function clearForm() {
+            document.getElementById('thickness').value = '25';
+            document.getElementById('width').value = '100';
+            document.getElementById('length').value = '6000';
+            document.getElementById('quantity').value = '3,0';
+            document.getElementById('price').value = '220';
+            document.getElementById('result').textContent = '';
+        }
+    </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
+</script>
+</body>
+</html>
